@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Project Index</title>
+</head>
+<body>
+    <h1>Project Files</h1>
+    <ul id="file-list">Loading files...</ul>
+
+    <script>
+        // Replace with your GitHub username and repo name
+        const user = 'YOUR_USERNAME';
+        const repo = 'YOUR_REPO_NAME';
+        const url = `https://api.github.com/repos/${user}/${repo}/contents/`;
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById('file-list');
+                list.innerHTML = ''; // Clear loading text
+                
+                data.forEach(file => {
+                    // Only show .html files and ignore index.html itself
+                    if (file.name.endsWith('.html') && file.name !== 'index.html') {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="${file.name}">${file.name}</a>`;
+                        list.appendChild(li);
+                    }
+                });
+            })
+            .catch(err => console.error('Error fetching files:', err));
+    </script>
+</body>
+</html>
