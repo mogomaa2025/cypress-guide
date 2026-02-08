@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cypress API Automation with JavaScript</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 2em;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            border-bottom: none;
+            margin-top: 0;
+        }
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .note {
+            background-color: #fff9c4;
+            border-left: 5px solid #fdd835;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .best-practice {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cypress API Automation with JavaScript</h1>
+        <p>Your comprehensive guide to getting started with API testing using Cypress and modern JavaScript. This document is designed for anyone new to JavaScript or Cypress.</p>
+
+        <!-- Section: JavaScript Fundamentals -->
+        <h2>JavaScript Fundamentals for Cypress</h2>
+        <p>Cypress tests are written in JavaScript. Understanding the fundamentals is key to writing effective and maintainable tests. Here are the core concepts you'll need.</p>
+
+        <h3>1. Variables (<code>let</code>, <code>const</code>)</h3>
+        <p>Variables store data. In modern JavaScript, we use <code>let</code> for variables that might change and <code>const</code> for variables that should never change (constants).</p>
+        <pre><code>// Use 'let' for values that might be reassigned
+let counter = 10;
+counter = 11; // This is okay
+
+// Use 'const' for values that should not change
+const baseUrl = "https://api.example.com";
+// baseUrl = "new-url"; // This would cause an error!</code></pre>
+        <div class="best-practice">
+            <strong>Best Practice:</strong> Prefer <code>const</code> by default. Only use <code>let</code> when you know a variable's value needs to change. This makes your code safer and easier to understand.
+        </div>
+
+        <h3>2. Data Types</h3>
+        <p>JavaScript has several fundamental data types. For API testing, you'll mainly work with these:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>String</strong></td>
+                    <td>Text, enclosed in quotes.</td>
+                    <td><code>const name = "John Doe";</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Number</strong></td>
+                    <td>Integers or floating-point numbers.</td>
+                    <td><code>const age = 30; const price = 99.99;</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Boolean</strong></td>
+                    <td>Represents <code>true</code> or <code>false</code>.</td>
+                    <td><code>const isActive = true;</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Object</strong></td>
+                    <td>A collection of key-value pairs. API request and response bodies are often objects.</td>
+                    <td><code>const user = { id: 1, name: "John" };</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Array</strong></td>
+                    <td>An ordered list of values. Useful for lists of data in API responses.</td>
+                    <td><code>const userIds = [1, 2, 3];</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3. Functions</h3>
+        <p>A function is a reusable block of code. You can define a function and call it whenever you need it.</p>
+        <pre><code>// A simple function to create a user payload
+function createUserPayload(name, email) {
+  return {
+    name: name,
+    email: email,
+    createdAt: new Date()
+  };
+}
+
+// Call the function to get the payload object
+const newUser = createUserPayload("Jane Doe", "jane.doe@example.com");</code></pre>
+
+        <h3>4. Objects</h3>
+        <p>Objects are central to API testing, as they represent the structure of JSON data. You can access properties using dot notation (<code>.</code>) or bracket notation (<code>[]</code>).</p>
+        <pre><code>const responseData = {
+  user: {
+    id: 123,
+    name: "Alex",
+    roles: ["admin", "editor"]
+  },
+  status: "active"
+};
+
+// Accessing object properties
+console.log(responseData.status); // "active"
+console.log(responseData.user.name); // "Alex"
+console.log(responseData.user.roles[0]); // "admin"</code></pre>
+        
+        <h3>5. Asynchronous JavaScript: Promises and <code>async/await</code></h3>
+        <p>API requests are <strong>asynchronous</strong>—they don't complete instantly. JavaScript handles this with Promises. Cypress commands are promise-aware, but you'll interact with them through command chaining (<code>.then()</code>).</p>
+        <div class="note">
+            <strong>Key Concept:</strong> Cypress commands are chained. A command doesn't run until the previous one finishes. This is how Cypress manages asynchronicity for you.
+        </div>
+        <p>The <code>.then()</code> block gives you access to the result of the previous command (like an API response).</p>
+        <pre><code>cy.request('https://jsonplaceholder.typicode.com/todos/1')
+  .then((response) => {
+    // This code runs AFTER the API request is complete
+    // 'response' contains the data from the server
+    console.log(response.body); 
+  });</code></pre>
+
+        <!-- Section: Cypress for API Testing -->
+        <h2>Cypress for API Testing: <code>cy.request()</code></h2>
+        <p>The primary tool for API testing in Cypress is the <code>cy.request()</code> command. It can make any type of HTTP request and automatically handles cookies and session information.</p>
+
+        <h3>Making a GET Request</h3>
+        <p>The simplest request. Used to retrieve data from a server.</p>
+        <pre><code>it('should fetch a list of users', () => {
+  cy.request('GET', 'https://jsonplaceholder.typicode.com/users')
+    .then((response) => {
+      // Assertions go here
+    });
+});</code></pre>
+
+        <h3>Making a POST Request</h3>
+        <p>Used to create a new resource on a server. You need to provide a request body (the data to create).</p>
+        <pre><code>it('should create a new post', () => {
+  const newPost = {
+    title: 'My awesome post',
+    body: 'This is the content of the post.',
+    userId: 1
+  };
+
+  cy.request('POST', 'https://jsonplaceholder.typicode.com/posts', newPost)
+    .then((response) => {
+      // Assertions go here
+    });
+});</code></pre>
+
+        <h3>Making PUT and DELETE Requests</h3>
+        <p><code>PUT</code> is used to update an existing resource, and <code>DELETE</code> is used to remove one.</p>
+        <pre><code>// Example of a PUT request to update post with ID 1
+cy.request('PUT', 'https://jsonplaceholder.typicode.com/posts/1', {
+  id: 1,
+  title: 'Updated Title',
+  body: 'Updated body.',
+  userId: 1
+});
+
+// Example of a DELETE request to remove post with ID 1
+cy.request('DELETE', 'https://jsonplaceholder.typicode.com/posts/1');</code></pre>
+
+        <h3>Advanced Options: Headers and Authentication</h3>
+        <p>You can pass an object to <code>cy.request()</code> to specify headers, authentication tokens, and more.</p>
+        <pre><code>cy.request({
+  method: 'POST',
+  url: 'https://api.example.com/items',
+  body: { itemName: 'My New Item' },
+  headers: {
+    'Authorization': 'Bearer YOUR_AUTH_TOKEN',
+    'X-Custom-Header': 'MyValue'
+  }
+});</code></pre>
+
+        <!-- Section: Assertions -->
+        <h2>Assertions: Verifying API Responses</h2>
+        <p>An API test isn't complete until you verify the response. Cypress bundles the <a href="https://www.chaijs.com/" target="_blank">Chai Assertion Library</a>, which provides a readable syntax (<code>expect</code> or <code>should</code>) for making assertions.</p>
+        <p>Assertions are placed inside the <code>.then()</code> block, where you have access to the response object.</p>
+
+        <h3>1. Asserting on the Status Code</h3>
+        <p>This is the most fundamental check. Did the request succeed? Was the resource created?</p>
+        <pre><code>cy.request('https://jsonplaceholder.typicode.com/users')
+  .then((response) => {
+    // Check for a successful response
+    expect(response.status).to.equal(200);
+  });</code></pre>
+
+        <h3>2. Asserting on the Response Body</h3>
+        <p>Check the data returned by the API. Is it structured correctly? Does it contain the right values?</p>
+        <pre><code>cy.request('POST', 'https://jsonplaceholder.typicode.com/posts', newPost)
+  .its('body') // Use .its('body') to chain assertions directly on the body
+  .should('have.property', 'title', 'My awesome post')
+  .and('have.property', 'userId', 1);</code></pre>
+        <p>You can also use <code>.then()</code> for more complex assertions:</p>
+        <pre><code>cy.request('https://jsonplaceholder.typicode.com/users/1')
+  .then((response) => {
+    expect(response.body).to.have.property('name');
+    expect(response.body.email).to.include('@');
+    expect(response.body.address.city).to.equal('Gwenborough');
+  });</code></pre>
+
+        <h3>3. Asserting on Response Headers</h3>
+        <p>Verify that the server is sending the correct headers, like <code>Content-Type</code>.</p>
+        <pre><code>cy.request('https://jsonplaceholder.typicode.com/users')
+  .then((response) => {
+    expect(response.headers).to.have.property('content-type');
+    expect(response.headers['content-type']).to.include('application/json');
+  });</code></pre>
+
+        <!-- Section: Full Example -->
+        <h2>Full Example & Best Practices</h2>
+        <p>Let's put everything together into a clean, structured test file.</p>
+        <div class="best-practice">
+            <strong>File Structure:</strong> It's a good practice to keep API tests separate from UI tests. You can create a folder like <code>cypress/e2e/api/</code>.
+        </div>
+        
+        <p><strong>Example Test File: <code>cypress/e2e/api/posts.cy.js</code></strong></p>
+        <pre><code>// describe() is a way to group related tests
+describe('JSONPlaceholder Posts API', () => {
+
+  // A test case is defined with it()
+  it('should retrieve all posts', () => {
+    cy.request('GET', 'https://jsonplaceholder.typicode.com/posts')
+      .then((response) => {
+        // 1. Check status code
+        expect(response.status).to.eq(200);
+
+        // 2. Check that the body is an array and not empty
+        expect(response.body).to.be.an('array').and.not.be.empty;
+
+        // 3. Check that the first post has the expected properties
+        expect(response.body[0]).to.have.all.keys('userId', 'id', 'title', 'body');
+      });
+  });
+
+  it('should create a new post successfully', () => {
+    const requestBody = {
+      title: 'Cypress API Test',
+      body: 'This is a test post.',
+      userId: 5,
+    };
+
+    cy.request('POST', 'https://jsonplaceholder.typicode.com/posts', requestBody)
+      .then((response) => {
+        // Check for "Created" status
+        expect(response.status).to.eq(201); 
+
+        // Check that the response body contains the data we sent
+        expect(response.body).to.have.property('title', requestBody.title);
+        expect(response.body).to.have.property('body', requestBody.body);
+        expect(response.body).to.have.property('userId', requestBody.userId);
+        
+        // The API should also assign a new ID
+        expect(response.body).to.have.property('id');
+      });
+  });
+
+});
+</code></pre>
+
+        <h2>Next Steps</h2>
+        <p>You now have the foundational knowledge to start writing API tests with Cypress! Here are some topics to explore next:</p>
+        <ul>
+            <li>Using a <code>baseUrl</code> in your <code>cypress.config.js</code> to avoid repeating URLs.</li>
+            <li>Using fixtures (<code>cy.fixture()</code>) to load test data from files.</li>
+            <li>Using custom commands to create reusable API request logic (e.g., <code>cy.login()</code>).</li>
+            <li>Setting and clearing environment variables for dynamic tests.</li>
+        </ul>
+        <p>Happy testing!</p>
+    </div>
+</body>
+</html>

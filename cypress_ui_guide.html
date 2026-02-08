@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cypress UI Automation Guide</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 2em;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            border-bottom: none;
+            margin-top: 0;
+        }
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .note {
+            background-color: #fffde7;
+            border-left: 5px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .best-practice {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning {
+            background-color: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cypress UI Automation Guide</h1>
+        <p>This guide provides a beginner-friendly introduction to UI testing with Cypress, focusing on the most common commands and best practices.</p>
+
+        <!-- Section: Core Concepts -->
+        <h2>Core UI Commands in Cypress</h2>
+        <p>Cypress provides a simple and intuitive API for interacting with a web application. The following are the essential commands you will use in almost every UI test.</p>
+
+        <h3>1. <code>cy.visit()</code> - Visiting a Page</h3>
+        <p>This is the first command in most UI tests. It tells Cypress which URL to open.</p>
+        <pre><code>// cypress.config.js might have: e2e: { baseUrl: 'http://localhost:3000' }
+cy.visit('/login'); // Visits http://localhost:3000/login
+
+// Or visit a fully qualified URL
+cy.visit('https://example.cypress.io');</code></pre>
+        <div class="best-practice">
+            <strong>Best Practice:</strong> Set a <code>baseUrl</code> in your <code>cypress.config.js</code> file. This allows you to use shorter, relative paths with <code>cy.visit()</code> and makes it easy to run tests against different environments (local, staging, production).
+        </div>
+
+        <h3>2. <code>cy.get()</code> - Selecting Elements</h3>
+        <p>This is the most important command for finding elements on the page. You pass it a "selector" to identify the element you want to interact with.</p>
+        <pre><code>// Select an element by its ID
+cy.get('#username');
+
+// Select an element by its CSS class
+cy.get('.btn-primary');
+
+// Select an element by its tag and attribute
+cy.get('input[name="password"]');</code></pre>
+        <div class="warning">
+            <strong>Selector Best Practices:</strong> Avoid using selectors that are likely to change, such as dynamic CSS classes or element IDs used for styling. The most robust strategy is to use dedicated testing attributes.
+            <br><br>
+            Add <code>data-cy</code> attributes to your HTML elements:
+            <br>
+            <code>&lt;button data-cy="submit-login"&gt;Log In&lt;/button&gt;</code>
+            <br><br>
+            Then select it in your test like this:
+            <br>
+            <code>cy.get('[data-cy="submit-login"]');</code>
+        </div>
+        
+        <h3>3. <code>.type()</code> - Typing into Elements</h3>
+        <p>Once you have selected an input or textarea element, you can use <code>.type()</code> to simulate a user typing into it.</p>
+        <pre><code>cy.get('[data-cy="username-input"]').type('jane.doe@example.com');
+
+// You can also type special characters
+cy.get('[data-cy="password-input"]').type('your-secret-password{enter}');</code></pre>
+
+        <h3>4. <code>.click()</code> - Clicking Elements</h3>
+        <p>This command simulates a user clicking on an element, such as a button, link, or checkbox.</p>
+        <pre><code>cy.get('[data-cy="submit-login"]').click();
+
+// You can click specific positions or force a click
+cy.get('.menu-item').click({ force: true });</code></pre>
+
+        <h3>5. <code>.should()</code> - Making Assertions</h3>
+        <p>Assertions are how you verify that your application is in the correct state. The <code>.should()</code> command is the primary way to do this. It chains off other commands, like <code>cy.get()</code>.</p>
+        <pre><code>// Check if an element is visible
+cy.get('[data-cy="welcome-message"]').should('be.visible');
+
+// Check the text content of an element
+cy.get('h1').should('have.text', 'Welcome to Your Dashboard');
+
+// Check if an input field has the correct value
+cy.get('[data-cy="username-input"]').should('have.value', 'jane.doe@example.com');</code></pre>
+
+        <!-- Section: Common Assertions -->
+        <h2>Common UI Assertions</h2>
+        <p>Cypress bundles the Chai assertion library, providing a huge number of assertions. Here are some of the most common ones for UI testing.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Assertion</th>
+                    <th>What it Checks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>.should('be.visible')</code></td>
+                    <td>The element is visible on the page.</td>
+                </tr>
+                <tr>
+                    <td><code>.should('not.be.visible')</code></td>
+                    <td>The element is not visible.</td>
+                </tr>
+                <tr>
+                    <td><code>.should('exist')</code></td>
+                    <td>The element exists in the DOM (it may be hidden).</td>
+                </tr>
+                <tr>
+                    <td><code>.should('not.exist')</code></td>
+                    <td>The element does not exist in the DOM.</td>
+                </tr>
+                <tr>
+                    <td><code>.should('have.text', '...')</code></td>
+                    <td>The element's text content matches exactly.</td>
+                </tr>
+                 <tr>
+                    <td><code>.should('include.text', '...')</code></td>
+                    <td>The element's text content includes the given substring.</td>
+                </tr>
+                <tr>
+                    <td><code>.should('have.class', '...')</code></td>
+                    <td>The element has the specified CSS class.</td>
+                </tr>
+                <tr>
+                    <td><code>.should('be.disabled')</code></td>
+                    <td>The element (e.g., a button) is disabled.</td>
+                </tr>
+                <tr>
+                    <td><code>.should('be.checked')</code></td>
+                    <td>The checkbox or radio button is checked.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section: Full Example -->
+        <h2>Full Example: Testing a Login Form</h2>
+        <p>Let's combine these commands into a realistic test for a login page.</p>
+
+        <p><strong>Example HTML for a login page:</strong></p>
+        <pre><code>&lt;!-- login.html --&gt;
+&lt;h1&gt;Login&lt;/h1&gt;
+&lt;div data-cy="error-message" style="display: none; color: red;"&gt;
+  Invalid credentials.
+&lt;/div&gt;
+&lt;form&gt;
+  &lt;input data-cy="username-input" placeholder="Email" /&gt;
+  &lt;input data-cy="password-input" type="password" placeholder="Password" /&gt;
+  &lt;button data-cy="submit-login"&gt;Log In&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        
+        <p><strong>Example Test File: <code>cypress/e2e/ui/login.cy.js</code></strong></p>
+        <pre><code>describe('Login Functionality', () => {
+
+  // beforeEach() runs before each test case in this block
+  beforeEach(() => {
+    // Assumes you have a 'login.html' file in your project's root
+    // or you have set a baseUrl
+    cy.visit('/login.html');
+  });
+
+  it('should display an error for invalid credentials', () => {
+    // 1. Type into the inputs
+    cy.get('[data-cy="username-input"]').type('wrong@user.com');
+    cy.get('[data-cy="password-input"]').type('wrongpassword');
+
+    // 2. Click the submit button
+    cy.get('[data-cy="submit-login"]').click();
+
+    // 3. Assert that the error message is now visible
+    cy.get('[data-cy="error-message"]')
+      .should('be.visible')
+      .and('have.text', 'Invalid credentials.');
+  });
+
+  it('should allow a user to log in successfully', () => {
+    // 1. Type valid credentials
+    cy.get('[data-cy="username-input"]').type('correct@user.com');
+    cy.get('[data-cy="password-input"]').type('correctpassword');
+
+    // 2. Click submit
+    cy.get('[data-cy="submit-login"]').click();
+
+    // 3. Assert that the user is redirected to the dashboard
+    // cy.url() gets the current URL
+    cy.url().should('include', '/dashboard');
+
+    // 4. Assert that the dashboard shows a welcome message
+    cy.get('h1').should('have.text', 'Welcome to the Dashboard!');
+  });
+});</code></pre>
+
+        <h2>Next Steps</h2>
+        <p>With these fundamentals, you can test a wide variety of UI interactions. To continue your learning, explore these topics:</p>
+        <ul>
+            <li><strong>`cy.intercept()`:</strong> For spying on and stubbing network requests, allowing you to test the UI without needing a live backend.</li>
+            <li><strong>Hooks:</strong> Using `before()`, `afterEach()`, and `after()` for more complex setup and teardown.</li>
+            <li><strong>Interacting with different elements:</strong> Commands like `.select()` for dropdowns and `.check()` for radio buttons.</li>
+            <li><strong>Page Object Model:</strong> A design pattern for organizing your selectors and actions for better maintainability.</li>
+        </ul>
+        <p>Happy testing!</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,2465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript for Cypress API Testing - Complete Learning Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #667eea;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-align: center;
+        }
+
+        h2 {
+            color: #764ba2;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 5px solid #764ba2;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        h4 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .intro {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+            font-size: 0.95em;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        pre code {
+            background: none;
+            color: #f8f8f2;
+            padding: 0;
+        }
+
+        .tip {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .tip strong {
+            color: #155724;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning strong {
+            color: #856404;
+        }
+
+        .best-practice {
+            background: #e7f3ff;
+            border-left: 5px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .best-practice strong {
+            color: #0d47a1;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #667eea;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+
+        .toc {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .toc ul {
+            list-style-type: none;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .example-title {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 JavaScript for Cypress API Testing</h1>
+        <h2 style="text-align: center; color: #764ba2; margin-top: 0; border: none; padding: 0;">Complete Beginner's Learning Guide</h2>
+
+        <div class="intro">
+            <p><strong>Welcome!</strong> This guide is your complete reference for learning JavaScript specifically for Cypress API automation testing. Whether you're brand new to JavaScript or coming from another language, this document covers everything you need to build professional API testing projects with Cypress.</p>
+            <p style="margin-top: 10px;"><strong>Focus:</strong> API Testing (Backend) - UI testing will be covered in a separate guide.</p>
+        </div>
+
+        <div class="toc">
+            <h2>📋 Table of Contents</h2>
+            <ul>
+                <li><a href="#section-1">1. JavaScript Fundamentals</a></li>
+                <li><a href="#section-2">2. JavaScript for API Testing</a></li>
+                <li><a href="#section-3">3. Cypress Basics</a></li>
+                <li><a href="#section-4">4. Cypress API Testing (cy.request)</a></li>
+                <li><a href="#section-5">5. Working with Responses & Assertions</a></li>
+                <li><a href="#section-6">6. Advanced API Testing Patterns</a></li>
+                <li><a href="#section-7">7. Project Structure & Organization</a></li>
+                <li><a href="#section-8">8. Best Practices</a></li>
+                <li><a href="#section-9">9. Complete Project Example</a></li>
+            </ul>
+        </div>
+
+        <!-- SECTION 1: JavaScript Fundamentals -->
+        <div class="section" id="section-1">
+            <h2>1. JavaScript Fundamentals</h2>
+
+            <h3>1.1 Variables & Constants</h3>
+            <p>Variables store data. In modern JavaScript, use <code>const</code> and <code>let</code> (avoid <code>var</code>).</p>
+
+            <pre><code>// const - value cannot be reassigned (use by default)
+const apiUrl = 'https://api.example.com';
+const timeout = 5000;
+
+// let - value can be reassigned (use when needed)
+let userToken = 'abc123';
+userToken = 'xyz789';  // ✅ OK with let
+
+// ❌ This would error:
+// apiUrl = 'new-url';  // Error! const cannot be reassigned</code></pre>
+
+            <div class="tip">
+                <strong>💡 Tip:</strong> Use <code>const</code> by default. Only use <code>let</code> when you know you'll need to reassign the variable.
+            </div>
+
+            <h3>1.2 Data Types</h3>
+
+            <h4>String (Text)</h4>
+            <pre><code>const username = 'john_doe';
+const email = "john@example.com";
+const message = `Hello ${username}`;  // Template literal (backticks) - can embed variables
+
+// String methods you'll use often
+const url = 'https://api.example.com/users';
+console.log(url.includes('api'));  // true
+console.log(url.toUpperCase());
+console.log(username.length);  // 8</code></pre>
+
+            <h4>Number</h4>
+            <pre><code>const statusCode = 200;
+const price = 99.99;
+const quantity = 10;
+
+// Math operations
+const total = price * quantity;
+const isSuccess = statusCode >= 200 && statusCode < 300;  // true</code></pre>
+
+            <h4>Boolean (true/false)</h4>
+            <pre><code>const isAuthenticated = true;
+const hasError = false;
+
+// Comparison operators
+const isEqual = (5 === 5);      // true (strict equality)
+const isNotEqual = (5 !== '5'); // true (different types)
+const isGreater = (10 > 5);     // true</code></pre>
+
+            <h4>Array (List of items)</h4>
+            <pre><code>const users = ['alice', 'bob', 'charlie'];
+const statusCodes = [200, 201, 404, 500];
+
+// Accessing items (0-based index)
+console.log(users[0]);  // 'alice'
+console.log(users.length);  // 3
+
+// Common array methods
+users.push('david');  // Add to end
+users.forEach(user => console.log(user));  // Loop through each
+const firstUser = users.find(u => u === 'alice');  // Find item
+const filtered = users.filter(u => u.startsWith('a'));  // Filter items</code></pre>
+
+            <h4>Object (Key-value pairs)</h4>
+            <pre><code>const user = {
+    id: 1,
+    username: 'john_doe',
+    email: 'john@example.com',
+    isActive: true
+};
+
+// Accessing properties
+console.log(user.username);  // 'john_doe'
+console.log(user['email']);  // 'john@example.com'
+
+// Adding/updating properties
+user.age = 30;
+user.isActive = false;</code></pre>
+
+            <h4>null & undefined</h4>
+            <pre><code>let response = null;  // Intentionally empty
+let userToken;  // undefined (not assigned yet)
+
+// Checking for null/undefined
+if (response === null) {
+    console.log('No response');
+}
+
+if (userToken === undefined) {
+    console.log('Token not set');
+}</code></pre>
+
+            <h3>1.3 Functions</h3>
+
+            <h4>Regular Function Declaration</h4>
+            <pre><code>function createUser(name, email) {
+    return {
+        name: name,
+        email: email,
+        createdAt: new Date()
+    };
+}
+
+const newUser = createUser('Alice', 'alice@example.com');</code></pre>
+
+            <h4>Arrow Functions (Modern & Preferred)</h4>
+            <pre><code>// Basic arrow function
+const getFullUrl = (endpoint) => {
+    return `https://api.example.com${endpoint}`;
+};
+
+// Short version (implicit return)
+const getFullUrl = (endpoint) => `https://api.example.com${endpoint}`;
+
+// Multiple parameters
+const calculateTotal = (price, quantity) => price * quantity;
+
+// No parameters
+const getTimestamp = () => new Date().toISOString();</code></pre>
+
+            <div class="tip">
+                <strong>💡 Tip:</strong> Arrow functions are shorter and commonly used in Cypress tests. They're equivalent to regular functions but with cleaner syntax.
+            </div>
+
+            <h3>1.4 Conditional Statements</h3>
+            <pre><code>// if-else
+const statusCode = 200;
+
+if (statusCode === 200) {
+    console.log('Success');
+} else if (statusCode === 404) {
+    console.log('Not Found');
+} else {
+    console.log('Other status');
+}
+
+// Ternary operator (short version)
+const message = statusCode === 200 ? 'Success' : 'Failed';
+
+// Switch statement
+switch (statusCode) {
+    case 200:
+        console.log('OK');
+        break;
+    case 201:
+        console.log('Created');
+        break;
+    case 404:
+        console.log('Not Found');
+        break;
+    default:
+        console.log('Other');
+}</code></pre>
+
+            <h3>1.5 Loops</h3>
+            <pre><code>const users = ['alice', 'bob', 'charlie'];
+
+// for loop (traditional)
+for (let i = 0; i < users.length; i++) {
+    console.log(users[i]);
+}
+
+// forEach (modern, preferred for arrays)
+users.forEach((user) => {
+    console.log(user);
+});
+
+// for...of (modern, clean syntax)
+for (const user of users) {
+    console.log(user);
+}
+
+// for...in (for object properties)
+const user = { name: 'Alice', age: 30 };
+for (const key in user) {
+    console.log(`${key}: ${user[key]}`);
+}</code></pre>
+
+            <h3>1.6 Template Literals</h3>
+            <pre><code>const userId = 123;
+const endpoint = '/users';
+
+// Old way (string concatenation)
+const url1 = 'https://api.example.com' + endpoint + '/' + userId;
+
+// Modern way (template literals)
+const url2 = `https://api.example.com${endpoint}/${userId}`;
+
+// Multi-line strings
+const jsonPayload = `{
+    "username": "alice",
+    "email": "alice@example.com"
+}`;</code></pre>
+
+            <h3>1.7 Destructuring</h3>
+            <pre><code>// Object destructuring
+const response = {
+    status: 200,
+    body: { id: 1, name: 'Alice' },
+    headers: { 'content-type': 'application/json' }
+};
+
+const { status, body } = response;
+console.log(status);  // 200
+console.log(body);    // { id: 1, name: 'Alice' }
+
+// Nested destructuring
+const { body: { id, name } } = response;
+console.log(id);    // 1
+console.log(name);  // 'Alice'
+
+// Array destructuring
+const users = ['alice', 'bob', 'charlie'];
+const [first, second] = users;
+console.log(first);  // 'alice'</code></pre>
+        </div>
+
+        <!-- SECTION 2: JavaScript for API Testing -->
+        <div class="section" id="section-2">
+            <h2>2. JavaScript for API Testing</h2>
+
+            <h3>2.1 JSON (JavaScript Object Notation)</h3>
+            <p>JSON is the standard format for API requests and responses. It looks like JavaScript objects but with stricter rules.</p>
+
+            <pre><code>// JavaScript Object
+const jsObject = {
+    id: 1,
+    name: 'Alice',
+    isActive: true
+};
+
+// JSON String (what APIs send/receive)
+const jsonString = '{"id":1,"name":"Alice","isActive":true}';
+
+// Converting between them
+const toJson = JSON.stringify(jsObject);  // Object → JSON string
+const toObject = JSON.parse(jsonString);  // JSON string → Object</code></pre>
+
+            <h3>2.2 Working with API Response Data</h3>
+            <pre><code>// Typical API response structure
+const apiResponse = {
+    status: 200,
+    body: {
+        data: {
+            id: 1,
+            username: 'alice',
+            email: 'alice@example.com'
+        },
+        message: 'User retrieved successfully'
+    }
+};
+
+// Extracting data
+const userId = apiResponse.body.data.id;
+const email = apiResponse.body.data.email;
+
+// Using destructuring (cleaner)
+const { body: { data } } = apiResponse;
+console.log(data.username);  // 'alice'</code></pre>
+
+            <h3>2.3 Array Methods for Testing</h3>
+            <p>These methods are essential for validating API responses that return multiple items.</p>
+
+            <pre><code>const users = [
+    { id: 1, name: 'Alice', role: 'admin' },
+    { id: 2, name: 'Bob', role: 'user' },
+    { id: 3, name: 'Charlie', role: 'user' }
+];
+
+// find() - Get first match
+const admin = users.find(u => u.role === 'admin');
+console.log(admin);  // { id: 1, name: 'Alice', role: 'admin' }
+
+// filter() - Get all matches
+const regularUsers = users.filter(u => u.role === 'user');
+console.log(regularUsers.length);  // 2
+
+// map() - Transform array
+const names = users.map(u => u.name);
+console.log(names);  // ['Alice', 'Bob', 'Charlie']
+
+// every() - Check if ALL items match
+const allHaveIds = users.every(u => u.id > 0);
+console.log(allHaveIds);  // true
+
+// some() - Check if ANY item matches
+const hasAdmin = users.some(u => u.role === 'admin');
+console.log(hasAdmin);  // true
+
+// includes() - Check if array contains value
+const userIds = [1, 2, 3, 4, 5];
+console.log(userIds.includes(3));  // true</code></pre>
+
+            <h3>2.4 Promises & Asynchronous JavaScript</h3>
+            <p>API calls are asynchronous - they don't block code execution. Understanding promises is crucial for Cypress.</p>
+
+            <pre><code>// Promise - represents a future value
+const fetchUserPromise = new Promise((resolve, reject) => {
+    // Simulating API call
+    setTimeout(() => {
+        const user = { id: 1, name: 'Alice' };
+        resolve(user);  // Success
+        // or reject('Error!');  // Failure
+    }, 1000);
+});
+
+// Using .then() to handle promise
+fetchUserPromise.then((user) => {
+    console.log(user);  // Executes when promise resolves
+});
+
+// Chaining promises
+fetchUserPromise
+    .then((user) => {
+        console.log('Got user:', user);
+        return user.id;
+    })
+    .then((userId) => {
+        console.log('User ID:', userId);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });</code></pre>
+
+            <div class="warning">
+                <strong>⚠️ Important:</strong> Cypress automatically handles promises! You don't need to use <code>.then()</code> for most Cypress commands, but understanding promises helps you know what's happening.
+            </div>
+
+            <h3>2.5 Object Spread Operator</h3>
+            <pre><code>// Useful for merging objects (common in API testing)
+const baseUser = {
+    username: 'alice',
+    email: 'alice@example.com'
+};
+
+// Add more properties
+const completeUser = {
+    ...baseUser,
+    id: 1,
+    createdAt: '2026-02-08'
+};
+
+// Update properties
+const updatedUser = {
+    ...baseUser,
+    email: 'alice.new@example.com'  // Override email
+};</code></pre>
+        </div>
+
+        <!-- SECTION 3: Cypress Basics -->
+        <div class="section" id="section-3">
+            <h2>3. Cypress Basics</h2>
+
+            <h3>3.1 Test Structure</h3>
+            <p>Cypress uses Mocha's testing syntax with <code>describe</code> and <code>it</code> blocks.</p>
+
+            <pre><code>// describe - Test suite (group of related tests)
+describe('User API Tests', () => {
+
+    // it - Individual test case
+    it('should get user by ID', () => {
+        // Test code goes here
+    });
+
+    it('should create new user', () => {
+        // Another test
+    });
+
+    it('should update user', () => {
+        // Another test
+    });
+});</code></pre>
+
+            <h3>3.2 Hooks (Setup & Teardown)</h3>
+            <pre><code>describe('User API Tests', () => {
+
+    // before - Runs once before all tests
+    before(() => {
+        cy.log('Setting up test suite');
+    });
+
+    // beforeEach - Runs before each test
+    beforeEach(() => {
+        cy.log('Preparing for test');
+        // Common setup like getting auth token
+    });
+
+    // afterEach - Runs after each test
+    afterEach(() => {
+        cy.log('Cleaning up after test');
+    });
+
+    // after - Runs once after all tests
+    after(() => {
+        cy.log('Test suite completed');
+    });
+
+    it('test 1', () => {
+        // Test code
+    });
+
+    it('test 2', () => {
+        // Test code
+    });
+});</code></pre>
+
+            <h3>3.3 Cypress Commands Are Asynchronous</h3>
+            <pre><code>// ❌ WRONG - This won't work
+let response;
+cy.request('/api/users');
+response = ???;  // Can't capture like this
+
+// ✅ CORRECT - Use .then()
+cy.request('/api/users').then((response) => {
+    // Work with response inside .then()
+    console.log(response.status);
+});
+
+// ✅ CORRECT - Chain commands
+cy.request('/api/users')
+    .its('status')
+    .should('equal', 200);</code></pre>
+
+            <div class="tip">
+                <strong>💡 Key Concept:</strong> Cypress commands are queued and executed later. Always work with responses inside <code>.then()</code> callbacks or use Cypress assertions directly.
+            </div>
+        </div>
+
+        <!-- SECTION 4: Cypress API Testing -->
+        <div class="section" id="section-4">
+            <h2>4. Cypress API Testing (cy.request)</h2>
+
+            <h3>4.1 Basic cy.request() Syntax</h3>
+            <pre><code>// Simple GET request
+cy.request('https://jsonplaceholder.typicode.com/users/1');
+
+// With method specified
+cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1');
+
+// Full options object (most flexible)
+cy.request({
+    method: 'GET',
+    url: 'https://jsonplaceholder.typicode.com/users/1',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer token123'
+    }
+});</code></pre>
+
+            <h3>4.2 HTTP Methods</h3>
+
+            <h4>GET - Retrieve Data</h4>
+            <pre><code>describe('GET Requests', () => {
+
+    it('should get all users', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users')
+            .then((response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body).to.be.an('array');
+                expect(response.body.length).to.be.greaterThan(0);
+            });
+    });
+
+    it('should get single user', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1')
+            .then((response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body).to.have.property('id', 1);
+                expect(response.body).to.have.property('name');
+            });
+    });
+
+    it('should handle 404', () => {
+        cy.request({
+            method: 'GET',
+            url: 'https://jsonplaceholder.typicode.com/users/999999',
+            failOnStatusCode: false  // Don't fail test on 4xx/5xx
+        }).then((response) => {
+            expect(response.status).to.equal(404);
+        });
+    });
+});</code></pre>
+
+            <h4>POST - Create New Resource</h4>
+            <pre><code>describe('POST Requests', () => {
+
+    it('should create new user', () => {
+        const newUser = {
+            name: 'John Doe',
+            username: 'johndoe',
+            email: 'john@example.com'
+        };
+
+        cy.request({
+            method: 'POST',
+            url: 'https://jsonplaceholder.typicode.com/users',
+            body: newUser
+        }).then((response) => {
+            expect(response.status).to.equal(201);
+            expect(response.body).to.have.property('id');
+            expect(response.body.name).to.equal('John Doe');
+            expect(response.body.email).to.equal('john@example.com');
+        });
+    });
+
+    it('should create new post', () => {
+        cy.request({
+            method: 'POST',
+            url: 'https://jsonplaceholder.typicode.com/posts',
+            body: {
+                title: 'My Test Post',
+                body: 'This is the content',
+                userId: 1
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            expect(response.status).to.equal(201);
+            expect(response.body.title).to.equal('My Test Post');
+        });
+    });
+});</code></pre>
+
+            <h4>PUT - Update Entire Resource</h4>
+            <pre><code>describe('PUT Requests', () => {
+
+    it('should update user', () => {
+        const updatedUser = {
+            id: 1,
+            name: 'Updated Name',
+            username: 'updated_username',
+            email: 'updated@example.com'
+        };
+
+        cy.request({
+            method: 'PUT',
+            url: 'https://jsonplaceholder.typicode.com/users/1',
+            body: updatedUser
+        }).then((response) => {
+            expect(response.status).to.equal(200);
+            expect(response.body.name).to.equal('Updated Name');
+            expect(response.body.email).to.equal('updated@example.com');
+        });
+    });
+});</code></pre>
+
+            <h4>PATCH - Partial Update</h4>
+            <pre><code>describe('PATCH Requests', () => {
+
+    it('should partially update user', () => {
+        cy.request({
+            method: 'PATCH',
+            url: 'https://jsonplaceholder.typicode.com/users/1',
+            body: {
+                email: 'newemail@example.com'  // Only update email
+            }
+        }).then((response) => {
+            expect(response.status).to.equal(200);
+            expect(response.body.email).to.equal('newemail@example.com');
+        });
+    });
+});</code></pre>
+
+            <h4>DELETE - Remove Resource</h4>
+            <pre><code>describe('DELETE Requests', () => {
+
+    it('should delete user', () => {
+        cy.request({
+            method: 'DELETE',
+            url: 'https://jsonplaceholder.typicode.com/users/1'
+        }).then((response) => {
+            expect(response.status).to.equal(200);
+        });
+    });
+
+    it('should verify deletion', () => {
+        cy.request({
+            method: 'DELETE',
+            url: 'https://jsonplaceholder.typicode.com/users/1'
+        });
+
+        // Try to get deleted user
+        cy.request({
+            method: 'GET',
+            url: 'https://jsonplaceholder.typicode.com/users/1',
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.equal(404);
+        });
+    });
+});</code></pre>
+
+            <h3>4.3 Request Options</h3>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><code>method</code></td>
+                    <td>HTTP method</td>
+                    <td><code>'GET'</code>, <code>'POST'</code>, <code>'PUT'</code>, <code>'PATCH'</code>, <code>'DELETE'</code></td>
+                </tr>
+                <tr>
+                    <td><code>url</code></td>
+                    <td>API endpoint</td>
+                    <td><code>'https://api.example.com/users'</code></td>
+                </tr>
+                <tr>
+                    <td><code>body</code></td>
+                    <td>Request payload</td>
+                    <td><code>{ name: 'John' }</code></td>
+                </tr>
+                <tr>
+                    <td><code>headers</code></td>
+                    <td>HTTP headers</td>
+                    <td><code>{ 'Authorization': 'Bearer token' }</code></td>
+                </tr>
+                <tr>
+                    <td><code>qs</code></td>
+                    <td>Query parameters</td>
+                    <td><code>{ page: 1, limit: 10 }</code></td>
+                </tr>
+                <tr>
+                    <td><code>failOnStatusCode</code></td>
+                    <td>Fail on 4xx/5xx</td>
+                    <td><code>false</code> (default: <code>true</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>timeout</code></td>
+                    <td>Request timeout (ms)</td>
+                    <td><code>10000</code> (default: 30000)</td>
+                </tr>
+            </table>
+
+            <h3>4.4 Query Parameters</h3>
+            <pre><code>// Using qs option
+cy.request({
+    method: 'GET',
+    url: 'https://jsonplaceholder.typicode.com/posts',
+    qs: {
+        userId: 1,
+        _limit: 5
+    }
+});
+// Sends: https://jsonplaceholder.typicode.com/posts?userId=1&_limit=5
+
+// Or build URL manually
+const userId = 1;
+const limit = 5;
+cy.request(`https://jsonplaceholder.typicode.com/posts?userId=${userId}&_limit=${limit}`);</code></pre>
+
+            <h3>4.5 Headers & Authentication</h3>
+            <pre><code>// Basic headers
+cy.request({
+    method: 'GET',
+    url: 'https://api.example.com/users',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+});
+
+// Bearer token authentication
+cy.request({
+    method: 'GET',
+    url: 'https://api.example.com/protected',
+    headers: {
+        'Authorization': 'Bearer your-token-here'
+    }
+});
+
+// API key authentication
+cy.request({
+    method: 'GET',
+    url: 'https://api.example.com/data',
+    headers: {
+        'X-API-Key': 'your-api-key-here'
+    }
+});
+
+// Basic authentication
+cy.request({
+    method: 'GET',
+    url: 'https://api.example.com/data',
+    auth: {
+        username: 'user',
+        password: 'pass'
+    }
+});</code></pre>
+        </div>
+
+        <!-- SECTION 5: Responses & Assertions -->
+        <div class="section" id="section-5">
+            <h2>5. Working with Responses & Assertions</h2>
+
+            <h3>5.1 Response Object Structure</h3>
+            <pre><code>cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1')
+    .then((response) => {
+        // Response object contains:
+        console.log(response.status);       // 200
+        console.log(response.statusText);   // "OK"
+        console.log(response.body);         // Response data
+        console.log(response.headers);      // Response headers
+        console.log(response.duration);     // Request duration in ms
+        console.log(response.isOkStatusCode); // true for 2xx
+    });</code></pre>
+
+            <h3>5.2 Basic Assertions</h3>
+            <pre><code>describe('Basic Assertions', () => {
+
+    it('should validate status code', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1')
+            .its('status')
+            .should('equal', 200);
+    });
+
+    it('should validate status code (alternative)', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1')
+            .then((response) => {
+                expect(response.status).to.equal(200);
+            });
+    });
+
+    it('should validate headers', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1')
+            .its('headers')
+            .its('content-type')
+            .should('include', 'application/json');
+    });
+});</code></pre>
+
+            <h3>5.3 Body Assertions</h3>
+            <pre><code>describe('Body Assertions', () => {
+
+    it('should validate response body properties', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1')
+            .then((response) => {
+                // Check property exists
+                expect(response.body).to.have.property('id');
+                expect(response.body).to.have.property('name');
+                expect(response.body).to.have.property('email');
+
+                // Check property value
+                expect(response.body.id).to.equal(1);
+                expect(response.body.name).to.be.a('string');
+                expect(response.body.email).to.include('@');
+            });
+    });
+
+    it('should validate nested properties', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1')
+            .then((response) => {
+                // Nested object validation
+                expect(response.body).to.have.property('address');
+                expect(response.body.address).to.have.property('city');
+                expect(response.body.address.geo).to.have.property('lat');
+            });
+    });
+
+    it('should validate array response', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users')
+            .then((response) => {
+                // Check it's an array
+                expect(response.body).to.be.an('array');
+
+                // Check array length
+                expect(response.body.length).to.be.greaterThan(0);
+                expect(response.body).to.have.length(10);
+
+                // Check first item
+                expect(response.body[0]).to.have.property('id');
+                expect(response.body[0]).to.have.property('name');
+            });
+    });
+});</code></pre>
+
+            <h3>5.4 Common Assertion Patterns</h3>
+            <pre><code>// Equality
+expect(value).to.equal(expected);
+expect(value).to.deep.equal({ id: 1, name: 'Alice' });  // For objects
+
+// Type checking
+expect(value).to.be.a('string');
+expect(value).to.be.a('number');
+expect(value).to.be.an('array');
+expect(value).to.be.an('object');
+expect(value).to.be.true;
+expect(value).to.be.false;
+expect(value).to.be.null;
+expect(value).to.be.undefined;
+
+// Property checks
+expect(obj).to.have.property('name');
+expect(obj).to.have.property('age', 30);  // With value
+expect(obj).to.have.all.keys('id', 'name', 'email');
+
+// String checks
+expect(str).to.include('substring');
+expect(str).to.match(/regex/);
+expect(str).to.have.length(10);
+
+// Number comparisons
+expect(num).to.be.greaterThan(5);
+expect(num).to.be.lessThan(100);
+expect(num).to.be.at.least(10);
+expect(num).to.be.at.most(50);
+expect(num).to.be.within(0, 100);
+
+// Array checks
+expect(arr).to.include('item');
+expect(arr).to.have.length(5);
+expect(arr).to.be.empty;
+
+// Existence
+expect(value).to.exist;
+expect(value).to.not.be.undefined;
+expect(value).to.not.be.null;</code></pre>
+
+            <h3>5.5 Chaining Assertions</h3>
+            <pre><code>cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1')
+    .its('body')
+    .should('have.property', 'id')
+    .and('be.a', 'number')
+    .and('be.greaterThan', 0);
+
+// Multiple assertions on same element
+cy.request('GET', 'https://jsonplaceholder.typicode.com/users')
+    .its('body')
+    .should('be.an', 'array')
+    .and('have.length.greaterThan', 0)
+    .and('have.length.lessThan', 100);</code></pre>
+
+            <h3>5.6 Extracting & Using Response Data</h3>
+            <pre><code>describe('Using Response Data', () => {
+
+    it('should chain requests using response data', () => {
+        // First request - create user
+        cy.request('POST', 'https://jsonplaceholder.typicode.com/users', {
+            name: 'John Doe',
+            email: 'john@example.com'
+        }).then((createResponse) => {
+            const userId = createResponse.body.id;
+
+            // Second request - get created user
+            cy.request('GET', `https://jsonplaceholder.typicode.com/users/${userId}`)
+                .then((getResponse) => {
+                    expect(getResponse.body.id).to.equal(userId);
+                    expect(getResponse.body.name).to.equal('John Doe');
+                });
+        });
+    });
+
+    it('should use alias for response data', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users/1')
+            .as('userResponse');  // Create alias
+
+        // Use alias later
+        cy.get('@userResponse').then((response) => {
+            expect(response.status).to.equal(200);
+        });
+    });
+
+    it('should store data in variable', () => {
+        let userId;
+
+        cy.request('POST', 'https://jsonplaceholder.typicode.com/users', {
+            name: 'Alice'
+        }).then((response) => {
+            userId = response.body.id;  // Store in variable
+        });
+
+        // Use stored variable in another test step
+        cy.then(() => {
+            cy.request('GET', `https://jsonplaceholder.typicode.com/users/${userId}`);
+        });
+    });
+});</code></pre>
+        </div>
+
+        <!-- SECTION 6: Advanced Patterns -->
+        <div class="section" id="section-6">
+            <h2>6. Advanced API Testing Patterns</h2>
+
+            <h3>6.1 Custom Commands</h3>
+            <p>Create reusable commands in <code>cypress/support/commands.js</code></p>
+
+            <pre><code>// cypress/support/commands.js
+
+// Custom command for API requests with base URL
+Cypress.Commands.add('apiRequest', (method, endpoint, body = null) => {
+    return cy.request({
+        method: method,
+        url: `https://jsonplaceholder.typicode.com${endpoint}`,
+        body: body,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        failOnStatusCode: false
+    });
+});
+
+// Custom command for authenticated requests
+Cypress.Commands.add('authenticatedRequest', (method, endpoint, body = null) => {
+    return cy.request({
+        method: method,
+        url: `https://api.example.com${endpoint}`,
+        body: body,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${Cypress.env('AUTH_TOKEN')}`
+        }
+    });
+});
+
+// Custom command for login
+Cypress.Commands.add('getAuthToken', (username, password) => {
+    return cy.request({
+        method: 'POST',
+        url: 'https://api.example.com/auth/login',
+        body: { username, password }
+    }).then((response) => {
+        return response.body.token;
+    });
+});
+
+// Usage in tests:
+describe('Using Custom Commands', () => {
+    it('should use custom API command', () => {
+        cy.apiRequest('GET', '/users/1').then((response) => {
+            expect(response.status).to.equal(200);
+        });
+    });
+
+    it('should use authenticated request', () => {
+        cy.authenticatedRequest('GET', '/profile').then((response) => {
+            expect(response.status).to.equal(200);
+        });
+    });
+});</code></pre>
+
+            <h3>6.2 Environment Variables</h3>
+            <p>Store configuration in <code>cypress.config.js</code> or <code>cypress.env.json</code></p>
+
+            <pre><code>// cypress.config.js
+const { defineConfig } = require('cypress');
+
+module.exports = defineConfig({
+    e2e: {
+        baseUrl: 'https://jsonplaceholder.typicode.com',
+        env: {
+            apiUrl: 'https://api.example.com',
+            apiKey: 'your-api-key',
+            authToken: ''
+        }
+    }
+});
+
+// cypress.env.json (for sensitive data - add to .gitignore)
+{
+    "apiUrl": "https://api.example.com",
+    "apiKey": "your-secret-key",
+    "username": "testuser",
+    "password": "testpass"
+}
+
+// Usage in tests:
+describe('Using Environment Variables', () => {
+    it('should use env variables', () => {
+        const apiUrl = Cypress.env('apiUrl');
+        const apiKey = Cypress.env('apiKey');
+
+        cy.request({
+            method: 'GET',
+            url: `${apiUrl}/data`,
+            headers: {
+                'X-API-Key': apiKey
+            }
+        });
+    });
+
+    it('should use baseUrl', () => {
+        // Automatically uses baseUrl from config
+        cy.request('/users/1');
+    });
+});</code></pre>
+
+            <h3>6.3 Fixtures (Test Data)</h3>
+            <p>Store test data in <code>cypress/fixtures/</code> folder</p>
+
+            <pre><code>// cypress/fixtures/users.json
+{
+    "validUser": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "phone": "123-456-7890"
+    },
+    "invalidUser": {
+        "name": "",
+        "email": "invalid-email"
+    },
+    "updateUser": {
+        "name": "Updated Name",
+        "email": "updated@example.com"
+    }
+}
+
+// Using fixtures in tests:
+describe('Using Fixtures', () => {
+    it('should create user from fixture', () => {
+        cy.fixture('users').then((users) => {
+            cy.request('POST', 'https://jsonplaceholder.typicode.com/users', users.validUser)
+                .then((response) => {
+                    expect(response.status).to.equal(201);
+                    expect(response.body.name).to.equal(users.validUser.name);
+                });
+        });
+    });
+
+    it('should load fixture before tests', () => {
+        cy.fixture('users').as('testData');
+
+        cy.get('@testData').then((data) => {
+            cy.request('POST', '/users', data.validUser);
+        });
+    });
+});</code></pre>
+
+            <h3>6.4 Data-Driven Testing</h3>
+            <pre><code>// cypress/fixtures/test-cases.json
+[
+    { "userId": 1, "expectedStatus": 200 },
+    { "userId": 2, "expectedStatus": 200 },
+    { "userId": 3, "expectedStatus": 200 },
+    { "userId": 999, "expectedStatus": 404 }
+]
+
+// Test using the data:
+describe('Data-Driven Tests', () => {
+    it('should test multiple user IDs', () => {
+        cy.fixture('test-cases').then((testCases) => {
+            testCases.forEach((testCase) => {
+                cy.request({
+                    method: 'GET',
+                    url: `https://jsonplaceholder.typicode.com/users/${testCase.userId}`,
+                    failOnStatusCode: false
+                }).then((response) => {
+                    expect(response.status).to.equal(testCase.expectedStatus);
+                });
+            });
+        });
+    });
+});</code></pre>
+
+            <h3>6.5 Request Chaining</h3>
+            <pre><code>describe('Request Chaining', () => {
+
+    it('should chain multiple requests', () => {
+        let createdPostId;
+
+        // 1. Create a post
+        cy.request('POST', 'https://jsonplaceholder.typicode.com/posts', {
+            title: 'My Post',
+            body: 'Post content',
+            userId: 1
+        }).then((createResponse) => {
+            expect(createResponse.status).to.equal(201);
+            createdPostId = createResponse.body.id;
+
+            // 2. Get the created post
+            return cy.request('GET', `https://jsonplaceholder.typicode.com/posts/${createdPostId}`);
+        }).then((getResponse) => {
+            expect(getResponse.status).to.equal(200);
+            expect(getResponse.body.title).to.equal('My Post');
+
+            // 3. Update the post
+            return cy.request('PATCH', `https://jsonplaceholder.typicode.com/posts/${createdPostId}`, {
+                title: 'Updated Title'
+            });
+        }).then((updateResponse) => {
+            expect(updateResponse.status).to.equal(200);
+            expect(updateResponse.body.title).to.equal('Updated Title');
+
+            // 4. Delete the post
+            return cy.request('DELETE', `https://jsonplaceholder.typicode.com/posts/${createdPostId}`);
+        }).then((deleteResponse) => {
+            expect(deleteResponse.status).to.equal(200);
+        });
+    });
+});</code></pre>
+
+            <h3>6.6 Error Handling & Negative Testing</h3>
+            <pre><code>describe('Error Handling', () => {
+
+    it('should handle 404 not found', () => {
+        cy.request({
+            method: 'GET',
+            url: 'https://jsonplaceholder.typicode.com/users/99999',
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.equal(404);
+        });
+    });
+
+    it('should handle invalid data', () => {
+        cy.request({
+            method: 'POST',
+            url: 'https://api.example.com/users',
+            body: {
+                // Missing required fields
+            },
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.equal(400);
+            expect(response.body).to.have.property('error');
+            expect(response.body.error).to.include('validation');
+        });
+    });
+
+    it('should handle unauthorized access', () => {
+        cy.request({
+            method: 'GET',
+            url: 'https://api.example.com/protected',
+            failOnStatusCode: false
+            // No auth token
+        }).then((response) => {
+            expect(response.status).to.equal(401);
+        });
+    });
+
+    it('should handle timeout', () => {
+        cy.request({
+            method: 'GET',
+            url: 'https://api.example.com/slow-endpoint',
+            timeout: 5000  // 5 seconds
+        });
+    });
+});</code></pre>
+
+            <h3>6.7 Performance Testing</h3>
+            <pre><code>describe('Performance Testing', () => {
+
+    it('should complete request within time limit', () => {
+        const startTime = Date.now();
+
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users')
+            .then((response) => {
+                const endTime = Date.now();
+                const duration = endTime - startTime;
+
+                expect(response.status).to.equal(200);
+                expect(duration).to.be.lessThan(1000);  // Under 1 second
+                cy.log(`Request completed in ${duration}ms`);
+            });
+    });
+
+    it('should check response time from response object', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users')
+            .then((response) => {
+                expect(response.duration).to.be.lessThan(1000);
+                cy.log(`Request took ${response.duration}ms`);
+            });
+    });
+});</code></pre>
+        </div>
+
+        <!-- SECTION 7: Project Structure -->
+        <div class="section" id="section-7">
+            <h2>7. Project Structure & Organization</h2>
+
+            <h3>7.1 Recommended Folder Structure</h3>
+            <pre><code>cypress-api-automation/
+├── cypress/
+│   ├── e2e/
+│   │   ├── api/
+│   │   │   ├── users/
+│   │   │   │   ├── get-users.cy.js
+│   │   │   │   ├── create-user.cy.js
+│   │   │   │   ├── update-user.cy.js
+│   │   │   │   └── delete-user.cy.js
+│   │   │   ├── posts/
+│   │   │   │   ├── get-posts.cy.js
+│   │   │   │   └── create-post.cy.js
+│   │   │   └── auth/
+│   │   │       ├── login.cy.js
+│   │   │       └── logout.cy.js
+│   ├── fixtures/
+│   │   ├── users.json
+│   │   ├── posts.json
+│   │   └── test-data.json
+│   ├── support/
+│   │   ├── commands.js
+│   │   ├── e2e.js
+│   │   └── api-helpers.js
+├── cypress.config.js
+├── package.json
+└── README.md</code></pre>
+
+            <h3>7.2 Configuration File</h3>
+            <pre><code>// cypress.config.js
+const { defineConfig } = require('cypress');
+
+module.exports = defineConfig({
+    e2e: {
+        baseUrl: 'https://jsonplaceholder.typicode.com',
+        specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+        supportFile: 'cypress/support/e2e.js',
+        fixturesFolder: 'cypress/fixtures',
+        video: false,
+        screenshotOnRunFailure: true,
+
+        env: {
+            apiUrl: 'https://jsonplaceholder.typicode.com',
+            timeout: 10000
+        },
+
+        setupNodeEvents(on, config) {
+            // implement node event listeners here
+        }
+    }
+});</code></pre>
+
+            <h3>7.3 Support Files</h3>
+
+            <h4>cypress/support/e2e.js</h4>
+            <pre><code>// Import commands
+import './commands';
+
+// Global before hook
+before(() => {
+    cy.log('Starting test suite');
+});
+
+// Global after hook
+after(() => {
+    cy.log('Test suite completed');
+});
+
+// Global beforeEach hook
+beforeEach(() => {
+    cy.log('Starting new test');
+});</code></pre>
+
+            <h4>cypress/support/commands.js</h4>
+            <pre><code>// Custom API command
+Cypress.Commands.add('apiRequest', (method, endpoint, body = null) => {
+    const baseUrl = Cypress.env('apiUrl');
+    return cy.request({
+        method: method,
+        url: `${baseUrl}${endpoint}`,
+        body: body,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        failOnStatusCode: false
+    });
+});
+
+// Validate status code
+Cypress.Commands.add('validateStatus', (response, expectedStatus) => {
+    expect(response.status).to.equal(expectedStatus);
+});
+
+// Validate response time
+Cypress.Commands.add('validateResponseTime', (response, maxTime) => {
+    expect(response.duration).to.be.lessThan(maxTime);
+});</code></pre>
+
+            <h4>cypress/support/api-helpers.js</h4>
+            <pre><code>// Helper functions for API tests
+export const ApiHelpers = {
+
+    // Generate random user data
+    generateUserData: () => {
+        return {
+            name: `User_${Date.now()}`,
+            email: `user${Date.now()}@example.com`,
+            username: `user_${Date.now()}`
+        };
+    },
+
+    // Validate user schema
+    validateUserSchema: (user) => {
+        expect(user).to.have.property('id');
+        expect(user).to.have.property('name');
+        expect(user).to.have.property('email');
+        expect(user).to.have.property('username');
+    },
+
+    // Get base URL
+    getBaseUrl: () => {
+        return Cypress.env('apiUrl');
+    }
+};
+
+// Usage:
+// import { ApiHelpers } from '../support/api-helpers';</code></pre>
+
+            <h3>7.4 Sample Test File</h3>
+            <pre><code>// cypress/e2e/api/users/get-users.cy.js
+import { ApiHelpers } from '../../../support/api-helpers';
+
+describe('GET Users API Tests', () => {
+
+    const baseUrl = 'https://jsonplaceholder.typicode.com';
+
+    beforeEach(() => {
+        cy.log('Preparing test');
+    });
+
+    it('should get all users successfully', () => {
+        cy.request('GET', `${baseUrl}/users`).then((response) => {
+            // Status validation
+            expect(response.status).to.equal(200);
+
+            // Headers validation
+            expect(response.headers['content-type']).to.include('application/json');
+
+            // Body validation
+            expect(response.body).to.be.an('array');
+            expect(response.body.length).to.be.greaterThan(0);
+
+            // Schema validation
+            ApiHelpers.validateUserSchema(response.body[0]);
+        });
+    });
+
+    it('should get single user by ID', () => {
+        const userId = 1;
+
+        cy.request('GET', `${baseUrl}/users/${userId}`).then((response) => {
+            expect(response.status).to.equal(200);
+            expect(response.body).to.have.property('id', userId);
+            ApiHelpers.validateUserSchema(response.body);
+        });
+    });
+
+    it('should return 404 for non-existent user', () => {
+        cy.request({
+            method: 'GET',
+            url: `${baseUrl}/users/999999`,
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.equal(404);
+        });
+    });
+});</code></pre>
+        </div>
+
+        <!-- SECTION 8: Best Practices -->
+        <div class="section" id="section-8">
+            <h2>8. Best Practices for Cypress API Testing</h2>
+
+            <h3>8.1 Test Organization</h3>
+            <div class="best-practice">
+                <strong>✅ DO:</strong>
+                <ul>
+                    <li>Group related tests using <code>describe</code> blocks</li>
+                    <li>Use clear, descriptive test names starting with "should"</li>
+                    <li>Keep tests independent - each test should run standalone</li>
+                    <li>Follow Arrange-Act-Assert pattern</li>
+                    <li>One assertion focus per test</li>
+                </ul>
+            </div>
+
+            <pre><code>// ✅ GOOD - Clear organization
+describe('User API - CRUD Operations', () => {
+
+    describe('POST /users - Create User', () => {
+        it('should create user with valid data', () => {
+            // Arrange
+            const userData = { name: 'John', email: 'john@example.com' };
+
+            // Act
+            cy.request('POST', '/users', userData).then((response) => {
+                // Assert
+                expect(response.status).to.equal(201);
+                expect(response.body).to.deep.include(userData);
+            });
+        });
+
+        it('should return 400 for invalid email', () => {
+            // Focused test for one scenario
+        });
+    });
+
+    describe('GET /users - Retrieve Users', () => {
+        it('should get all users', () => {
+            // Test logic
+        });
+    });
+});
+
+// ❌ BAD - Unclear organization
+describe('tests', () => {
+    it('test1', () => {
+        // What does this test?
+    });
+});</code></pre>
+
+            <h3>8.2 Using failOnStatusCode</h3>
+            <div class="best-practice">
+                <strong>✅ Best Practice:</strong> Always set <code>failOnStatusCode: false</code> when testing error scenarios (4xx, 5xx status codes).
+            </div>
+
+            <pre><code>// ✅ GOOD - Testing error scenarios
+it('should handle 404 error', () => {
+    cy.request({
+        method: 'GET',
+        url: '/users/999999',
+        failOnStatusCode: false  // Don't fail the test
+    }).then((response) => {
+        expect(response.status).to.equal(404);
+    });
+});
+
+// ❌ BAD - Test will fail before assertion
+it('should handle 404 error', () => {
+    cy.request('GET', '/users/999999').then((response) => {
+        // Never reaches here - Cypress fails the test automatically
+        expect(response.status).to.equal(404);
+    });
+});</code></pre>
+
+            <h3>8.3 Environment Variables & Configuration</h3>
+            <div class="best-practice">
+                <strong>✅ Best Practice:</strong>
+                <ul>
+                    <li>Store URLs, credentials, and API keys in environment variables</li>
+                    <li>Never hardcode sensitive data in test files</li>
+                    <li>Use <code>cypress.env.json</code> for local secrets (add to .gitignore)</li>
+                    <li>Use CI/CD environment variables for production secrets</li>
+                </ul>
+            </div>
+
+            <pre><code>// ✅ GOOD - Using environment variables
+const apiUrl = Cypress.env('apiUrl');
+const apiKey = Cypress.env('apiKey');
+
+cy.request({
+    method: 'GET',
+    url: `${apiUrl}/users`,
+    headers: {
+        'X-API-Key': apiKey
+    }
+});
+
+// ❌ BAD - Hardcoded values
+cy.request({
+    method: 'GET',
+    url: 'https://api.example.com/users',
+    headers: {
+        'X-API-Key': 'sk_test_1234567890abcdef'  // Exposed!
+    }
+});</code></pre>
+
+            <h3>8.4 Reusable Custom Commands</h3>
+            <div class="best-practice">
+                <strong>✅ Best Practice:</strong> Create custom commands for repeated API operations.
+            </div>
+
+            <pre><code>// cypress/support/commands.js
+Cypress.Commands.add('createUser', (userData) => {
+    return cy.request({
+        method: 'POST',
+        url: `${Cypress.env('apiUrl')}/users`,
+        body: userData
+    });
+});
+
+Cypress.Commands.add('getUser', (userId) => {
+    return cy.request('GET', `${Cypress.env('apiUrl')}/users/${userId}`);
+});
+
+// Usage in tests - Clean and readable
+describe('User Tests', () => {
+    it('should create and retrieve user', () => {
+        cy.createUser({ name: 'Alice', email: 'alice@example.com' })
+            .then((response) => {
+                const userId = response.body.id;
+                return cy.getUser(userId);
+            })
+            .then((response) => {
+                expect(response.body.name).to.equal('Alice');
+            });
+    });
+});</code></pre>
+
+            <h3>8.5 Using Fixtures for Test Data</h3>
+            <div class="best-practice">
+                <strong>✅ Best Practice:</strong> Store test data in fixtures, not in test files.
+            </div>
+
+            <pre><code>// ✅ GOOD - Using fixtures
+cy.fixture('users').then((users) => {
+    cy.request('POST', '/users', users.validUser);
+});
+
+// ❌ BAD - Data in test file
+const userData = {
+    name: 'John Doe',
+    email: 'john@example.com',
+    address: {
+        street: '123 Main St',
+        city: 'Springfield',
+        // ... lots more data
+    }
+};
+cy.request('POST', '/users', userData);</code></pre>
+
+            <h3>8.6 Comprehensive Assertions</h3>
+            <div class="best-practice">
+                <strong>✅ Best Practice:</strong> Don't just check status codes - validate response body, headers, and schema.
+            </div>
+
+            <pre><code>// ✅ GOOD - Comprehensive validation
+cy.request('GET', '/users/1').then((response) => {
+    // Status
+    expect(response.status).to.equal(200);
+
+    // Headers
+    expect(response.headers['content-type']).to.include('application/json');
+
+    // Body structure
+    expect(response.body).to.have.all.keys('id', 'name', 'email', 'username');
+
+    // Data types
+    expect(response.body.id).to.be.a('number');
+    expect(response.body.name).to.be.a('string');
+
+    // Business logic
+    expect(response.body.id).to.equal(1);
+    expect(response.body.email).to.include('@');
+
+    // Performance
+    expect(response.duration).to.be.lessThan(1000);
+});
+
+// ❌ BAD - Only status check
+cy.request('GET', '/users/1').then((response) => {
+    expect(response.status).to.equal(200);
+    // That's it? What about the data?
+});</code></pre>
+
+            <h3>8.7 Test Independence</h3>
+            <div class="best-practice">
+                <strong>✅ Best Practice:</strong> Each test should be independent and not rely on other tests.
+            </div>
+
+            <pre><code>// ✅ GOOD - Independent tests
+describe('User Tests', () => {
+
+    it('should create user', () => {
+        // Creates its own user
+        cy.request('POST', '/users', { name: 'Alice' });
+    });
+
+    it('should get user', () => {
+        // Creates its own user first
+        cy.request('POST', '/users', { name: 'Bob' })
+            .then((response) => {
+                const userId = response.body.id;
+                return cy.request('GET', `/users/${userId}`);
+            });
+    });
+});
+
+// ❌ BAD - Tests depend on each other
+describe('User Tests', () => {
+    let userId;  // Shared state
+
+    it('should create user', () => {
+        cy.request('POST', '/users', { name: 'Alice' })
+            .then((response) => {
+                userId = response.body.id;  // Test 2 depends on this
+            });
+    });
+
+    it('should get user', () => {
+        // Fails if test 1 doesn't run first
+        cy.request('GET', `/users/${userId}`);
+    });
+});</code></pre>
+
+            <h3>8.8 Naming Conventions</h3>
+            <div class="best-practice">
+                <strong>✅ Best Practice:</strong>
+                <ul>
+                    <li>File names: <code>kebab-case.cy.js</code></li>
+                    <li>Test names: Start with "should" and describe expected behavior</li>
+                    <li>Variables: <code>camelCase</code></li>
+                    <li>Constants: <code>UPPER_SNAKE_CASE</code> or <code>camelCase</code></li>
+                </ul>
+            </div>
+
+            <pre><code>// ✅ GOOD
+// File: get-users.cy.js
+
+const API_BASE_URL = 'https://api.example.com';
+const expectedStatus = 200;
+
+describe('GET /users - User Retrieval', () => {
+    it('should return all users successfully', () => {
+        const userId = 1;
+        cy.request('GET', `${API_BASE_URL}/users/${userId}`);
+    });
+
+    it('should return 404 for non-existent user', () => {
+        // Test logic
+    });
+});
+
+// ❌ BAD
+// File: test.cy.js
+
+describe('tests', () => {
+    it('test 1', () => {  // Unclear what this tests
+        const USERID = 1;  // Inconsistent naming
+        // Test logic
+    });
+});</code></pre>
+
+            <h3>8.9 Error Messages & Logging</h3>
+            <div class="best-practice">
+                <strong>✅ Best Practice:</strong> Add meaningful logs and custom error messages.
+            </div>
+
+            <pre><code>// ✅ GOOD - Clear debugging info
+it('should create user with valid data', () => {
+    const userData = { name: 'Alice', email: 'alice@example.com' };
+
+    cy.log('Creating user with data:', userData);
+
+    cy.request('POST', '/users', userData).then((response) => {
+        cy.log(`User created with ID: ${response.body.id}`);
+
+        expect(response.status, 'Status code should be 201').to.equal(201);
+        expect(response.body.id, 'Response should contain user ID').to.exist;
+    });
+});</code></pre>
+
+            <h3>8.10 Performance Considerations</h3>
+            <div class="best-practice">
+                <strong>✅ Best Practice:</strong>
+                <ul>
+                    <li>Use API calls for test setup (beforeEach hooks)</li>
+                    <li>Monitor response times</li>
+                    <li>Parallelize independent tests</li>
+                    <li>Clean up test data after tests</li>
+                </ul>
+            </div>
+
+            <pre><code>describe('Post Tests', () => {
+
+    beforeEach(() => {
+        // Create test user via API (fast)
+        cy.request('POST', '/users', {
+            name: 'TestUser',
+            email: 'test@example.com'
+        }).as('testUser');
+    });
+
+    afterEach(() => {
+        // Clean up test data
+        cy.get('@testUser').then((response) => {
+            cy.request('DELETE', `/users/${response.body.id}`);
+        });
+    });
+
+    it('should measure response time', () => {
+        cy.request('GET', '/users').then((response) => {
+            expect(response.duration).to.be.lessThan(1000);
+            cy.log(`Response time: ${response.duration}ms`);
+        });
+    });
+});</code></pre>
+        </div>
+
+        <!-- SECTION 9: Complete Example -->
+        <div class="section" id="section-9">
+            <h2>9. Complete Project Example</h2>
+
+            <h3>9.1 Project Setup</h3>
+            <pre><code>// 1. Initialize project
+npm init -y
+
+// 2. Install Cypress
+npm install cypress --save-dev
+
+// 3. Open Cypress
+npx cypress open
+
+// 4. Or run headless
+npx cypress run</code></pre>
+
+            <h3>9.2 Package.json Scripts</h3>
+            <pre><code>{
+  "name": "cypress-api-testing",
+  "version": "1.0.0",
+  "description": "API automation testing with Cypress",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:api": "cypress run --spec 'cypress/e2e/api/**/*.cy.js'",
+    "test": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^13.0.0"
+  }
+}</code></pre>
+
+            <h3>9.3 Complete Test Suite Example</h3>
+
+            <div class="example-box">
+                <div class="example-title">cypress/e2e/api/users/user-crud.cy.js</div>
+                <pre><code>describe('User CRUD API Tests', () => {
+
+    const baseUrl = 'https://jsonplaceholder.typicode.com';
+    let createdUserId;
+
+    // Test data
+    const newUser = {
+        name: 'John Doe',
+        username: 'johndoe',
+        email: 'john@example.com',
+        phone: '123-456-7890',
+        website: 'johndoe.com'
+    };
+
+    describe('POST /users - Create User', () => {
+
+        it('should create user with valid data', () => {
+            cy.request({
+                method: 'POST',
+                url: `${baseUrl}/users`,
+                body: newUser
+            }).then((response) => {
+                // Save ID for other tests
+                createdUserId = response.body.id;
+
+                // Validate response
+                expect(response.status).to.equal(201);
+                expect(response.headers['content-type']).to.include('application/json');
+
+                // Validate body
+                expect(response.body).to.have.property('id');
+                expect(response.body.name).to.equal(newUser.name);
+                expect(response.body.email).to.equal(newUser.email);
+                expect(response.body.username).to.equal(newUser.username);
+
+                // Log for debugging
+                cy.log(`Created user with ID: ${createdUserId}`);
+            });
+        });
+
+        it('should return 201 status code for successful creation', () => {
+            cy.request('POST', `${baseUrl}/users`, newUser)
+                .its('status')
+                .should('equal', 201);
+        });
+    });
+
+    describe('GET /users - Retrieve Users', () => {
+
+        it('should get all users', () => {
+            cy.request('GET', `${baseUrl}/users`).then((response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body).to.be.an('array');
+                expect(response.body.length).to.be.greaterThan(0);
+
+                // Validate first user structure
+                const firstUser = response.body[0];
+                expect(firstUser).to.have.all.keys(
+                    'id', 'name', 'username', 'email', 
+                    'address', 'phone', 'website', 'company'
+                );
+            });
+        });
+
+        it('should get user by valid ID', () => {
+            const userId = 1;
+
+            cy.request('GET', `${baseUrl}/users/${userId}`).then((response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body).to.have.property('id', userId);
+                expect(response.body).to.have.property('name');
+                expect(response.body).to.have.property('email');
+
+                // Validate email format
+                expect(response.body.email).to.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+            });
+        });
+
+        it('should return 404 for non-existent user', () => {
+            cy.request({
+                method: 'GET',
+                url: `${baseUrl}/users/999999`,
+                failOnStatusCode: false
+            }).then((response) => {
+                expect(response.status).to.equal(404);
+            });
+        });
+
+        it('should filter users by query parameter', () => {
+            cy.request({
+                method: 'GET',
+                url: `${baseUrl}/users`,
+                qs: {
+                    id: 1
+                }
+            }).then((response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body).to.be.an('array');
+                expect(response.body[0].id).to.equal(1);
+            });
+        });
+    });
+
+    describe('PUT /users - Update User', () => {
+
+        it('should update user with valid data', () => {
+            const updatedUser = {
+                id: 1,
+                name: 'Updated Name',
+                username: 'updated_username',
+                email: 'updated@example.com'
+            };
+
+            cy.request({
+                method: 'PUT',
+                url: `${baseUrl}/users/1`,
+                body: updatedUser
+            }).then((response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body.name).to.equal(updatedUser.name);
+                expect(response.body.email).to.equal(updatedUser.email);
+            });
+        });
+    });
+
+    describe('PATCH /users - Partial Update', () => {
+
+        it('should partially update user', () => {
+            cy.request({
+                method: 'PATCH',
+                url: `${baseUrl}/users/1`,
+                body: {
+                    name: 'Partially Updated Name'
+                }
+            }).then((response) => {
+                expect(response.status).to.equal(200);
+                expect(response.body.name).to.equal('Partially Updated Name');
+                // Other fields should remain unchanged
+                expect(response.body).to.have.property('email');
+                expect(response.body).to.have.property('username');
+            });
+        });
+    });
+
+    describe('DELETE /users - Delete User', () => {
+
+        it('should delete user successfully', () => {
+            cy.request({
+                method: 'DELETE',
+                url: `${baseUrl}/users/1`
+            }).then((response) => {
+                expect(response.status).to.equal(200);
+            });
+        });
+
+        it('should create then delete user', () => {
+            // Create user
+            cy.request('POST', `${baseUrl}/users`, newUser)
+                .then((createResponse) => {
+                    expect(createResponse.status).to.equal(201);
+                    const userId = createResponse.body.id;
+
+                    // Delete the user
+                    return cy.request('DELETE', `${baseUrl}/users/${userId}`);
+                })
+                .then((deleteResponse) => {
+                    expect(deleteResponse.status).to.equal(200);
+                });
+        });
+    });
+
+    describe('Request Chaining - Complete Workflow', () => {
+
+        it('should perform complete CRUD workflow', () => {
+            let userId;
+
+            // 1. CREATE
+            cy.request('POST', `${baseUrl}/users`, newUser)
+                .then((response) => {
+                    expect(response.status).to.equal(201);
+                    userId = response.body.id;
+                    cy.log(`Created user: ${userId}`);
+
+                    // 2. READ
+                    return cy.request('GET', `${baseUrl}/users/${userId}`);
+                })
+                .then((response) => {
+                    expect(response.status).to.equal(200);
+                    expect(response.body.id).to.equal(userId);
+                    cy.log(`Retrieved user: ${userId}`);
+
+                    // 3. UPDATE
+                    return cy.request('PATCH', `${baseUrl}/users/${userId}`, {
+                        name: 'Modified Name'
+                    });
+                })
+                .then((response) => {
+                    expect(response.status).to.equal(200);
+                    expect(response.body.name).to.equal('Modified Name');
+                    cy.log(`Updated user: ${userId}`);
+
+                    // 4. DELETE
+                    return cy.request('DELETE', `${baseUrl}/users/${userId}`);
+                })
+                .then((response) => {
+                    expect(response.status).to.equal(200);
+                    cy.log(`Deleted user: ${userId}`);
+                });
+        });
+    });
+
+    describe('Performance Testing', () => {
+
+        it('should complete request within acceptable time', () => {
+            cy.request('GET', `${baseUrl}/users`).then((response) => {
+                expect(response.status).to.equal(200);
+                expect(response.duration).to.be.lessThan(2000);
+                cy.log(`Request completed in ${response.duration}ms`);
+            });
+        });
+    });
+
+    describe('Error Handling', () => {
+
+        it('should handle network errors gracefully', () => {
+            cy.request({
+                method: 'GET',
+                url: 'https://invalid-domain-that-does-not-exist.com',
+                failOnStatusCode: false,
+                retryOnStatusCodeFailure: false
+            }).then((response) => {
+                // Handle or log error
+                cy.log('Network error handled');
+            });
+        });
+    });
+});</code></pre>
+            </div>
+
+            <h3>9.4 Custom Commands Example</h3>
+            <div class="example-box">
+                <div class="example-title">cypress/support/commands.js</div>
+                <pre><code>// Base API request command
+Cypress.Commands.add('apiRequest', (method, endpoint, body = null, options = {}) => {
+    const baseUrl = Cypress.env('apiUrl') || 'https://jsonplaceholder.typicode.com';
+
+    return cy.request({
+        method: method,
+        url: `${baseUrl}${endpoint}`,
+        body: body,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        },
+        failOnStatusCode: options.failOnStatusCode || false,
+        ...options
+    });
+});
+
+// User-specific commands
+Cypress.Commands.add('createUser', (userData) => {
+    return cy.apiRequest('POST', '/users', userData);
+});
+
+Cypress.Commands.add('getUser', (userId) => {
+    return cy.apiRequest('GET', `/users/${userId}`);
+});
+
+Cypress.Commands.add('updateUser', (userId, userData) => {
+    return cy.apiRequest('PUT', `/users/${userId}`, userData);
+});
+
+Cypress.Commands.add('deleteUser', (userId) => {
+    return cy.apiRequest('DELETE', `/users/${userId}`);
+});
+
+// Validation commands
+Cypress.Commands.add('validateStatusCode', (response, expectedCode) => {
+    expect(response.status).to.equal(expectedCode);
+});
+
+Cypress.Commands.add('validateUserSchema', (user) => {
+    expect(user).to.have.property('id');
+    expect(user).to.have.property('name');
+    expect(user).to.have.property('email');
+    expect(user).to.have.property('username');
+});
+
+// Usage example:
+// cy.createUser({ name: 'Alice', email: 'alice@example.com' })
+//   .then(response => {
+//       cy.validateStatusCode(response, 201);
+//       cy.validateUserSchema(response.body);
+//   });</code></pre>
+            </div>
+
+            <h3>9.5 Running Tests</h3>
+            <pre><code>// Open Cypress Test Runner (interactive)
+npm run cy:open
+
+// Run all tests headless
+npm run cy:run
+
+// Run specific spec file
+npx cypress run --spec "cypress/e2e/api/users/user-crud.cy.js"
+
+// Run with specific browser
+npx cypress run --browser chrome
+
+// Run and generate video
+npx cypress run --video=true
+
+// Run in parallel (Cypress Cloud)
+npx cypress run --parallel --record --key=your-key</code></pre>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="section">
+            <h2>📚 Quick Reference Cheat Sheet</h2>
+
+            <h3>JavaScript Essentials</h3>
+            <table>
+                <tr>
+                    <th>Concept</th>
+                    <th>Syntax</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td>Variable</td>
+                    <td><code>const name = value</code></td>
+                    <td><code>const apiUrl = 'https://api.example.com'</code></td>
+                </tr>
+                <tr>
+                    <td>Arrow Function</td>
+                    <td><code>(param) => { }</code></td>
+                    <td><code>const getUser = (id) => cy.request(`/users/${id}`)</code></td>
+                </tr>
+                <tr>
+                    <td>Template Literal</td>
+                    <td><code>`text ${variable}`</code></td>
+                    <td><code>`User ID: ${userId}`</code></td>
+                </tr>
+                <tr>
+                    <td>Destructuring</td>
+                    <td><code>const { key } = obj</code></td>
+                    <td><code>const { status, body } = response</code></td>
+                </tr>
+                <tr>
+                    <td>Array Filter</td>
+                    <td><code>arr.filter(item => condition)</code></td>
+                    <td><code>users.filter(u => u.role === 'admin')</code></td>
+                </tr>
+            </table>
+
+            <h3>Cypress API Commands</h3>
+            <table>
+                <tr>
+                    <th>Command</th>
+                    <th>Purpose</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><code>cy.request()</code></td>
+                    <td>Make API call</td>
+                    <td><code>cy.request('GET', '/users')</code></td>
+                </tr>
+                <tr>
+                    <td><code>.then()</code></td>
+                    <td>Handle response</td>
+                    <td><code>.then((response) => { })</code></td>
+                </tr>
+                <tr>
+                    <td><code>.its()</code></td>
+                    <td>Get property</td>
+                    <td><code>.its('status')</code></td>
+                </tr>
+                <tr>
+                    <td><code>.should()</code></td>
+                    <td>Assert value</td>
+                    <td><code>.should('equal', 200)</code></td>
+                </tr>
+                <tr>
+                    <td><code>.as()</code></td>
+                    <td>Create alias</td>
+                    <td><code>.as('userData')</code></td>
+                </tr>
+                <tr>
+                    <td><code>cy.fixture()</code></td>
+                    <td>Load test data</td>
+                    <td><code>cy.fixture('users.json')</code></td>
+                </tr>
+            </table>
+
+            <h3>Common Assertions</h3>
+            <table>
+                <tr>
+                    <th>Assertion</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td><code>expect(val).to.equal(expected)</code></td>
+                    <td>Strict equality</td>
+                </tr>
+                <tr>
+                    <td><code>expect(val).to.be.a('type')</code></td>
+                    <td>Type check</td>
+                </tr>
+                <tr>
+                    <td><code>expect(obj).to.have.property('key')</code></td>
+                    <td>Property exists</td>
+                </tr>
+                <tr>
+                    <td><code>expect(num).to.be.greaterThan(5)</code></td>
+                    <td>Comparison</td>
+                </tr>
+                <tr>
+                    <td><code>expect(arr).to.include('item')</code></td>
+                    <td>Contains item</td>
+                </tr>
+                <tr>
+                    <td><code>expect(str).to.match(/regex/)</code></td>
+                    <td>Regex match</td>
+                </tr>
+            </table>
+
+            <h3>HTTP Status Codes</h3>
+            <table>
+                <tr>
+                    <th>Code</th>
+                    <th>Meaning</th>
+                    <th>When Used</th>
+                </tr>
+                <tr>
+                    <td>200</td>
+                    <td>OK</td>
+                    <td>Successful GET, PUT, PATCH, DELETE</td>
+                </tr>
+                <tr>
+                    <td>201</td>
+                    <td>Created</td>
+                    <td>Successful POST (resource created)</td>
+                </tr>
+                <tr>
+                    <td>204</td>
+                    <td>No Content</td>
+                    <td>Successful DELETE (no body returned)</td>
+                </tr>
+                <tr>
+                    <td>400</td>
+                    <td>Bad Request</td>
+                    <td>Invalid request data</td>
+                </tr>
+                <tr>
+                    <td>401</td>
+                    <td>Unauthorized</td>
+                    <td>Missing/invalid authentication</td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>Forbidden</td>
+                    <td>No permission to access resource</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>Not Found</td>
+                    <td>Resource doesn't exist</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>Internal Server Error</td>
+                    <td>Server-side error</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="section">
+            <h2>🚀 Next Steps</h2>
+
+            <h3>After Mastering This Guide:</h3>
+            <ol>
+                <li><strong>Practice:</strong> Build a complete API test suite for a public API (JSONPlaceholder, ReqRes, etc.)</li>
+                <li><strong>Learn Advanced Topics:</strong>
+                    <ul>
+                        <li>API mocking and stubbing</li>
+                        <li>Intercept and modify requests</li>
+                        <li>CI/CD integration (GitHub Actions, Jenkins)</li>
+                        <li>Test reporting (Mochawesome, Allure)</li>
+                    </ul>
+                </li>
+                <li><strong>Explore Real APIs:</strong> Test actual applications with authentication, complex workflows</li>
+                <li><strong>TypeScript:</strong> Add type safety to your Cypress tests</li>
+                <li><strong>Performance Testing:</strong> Use Cypress with k6 or other tools</li>
+                <li><strong>Portfolio:</strong> Add your API testing projects to GitHub</li>
+            </ol>
+
+            <h3>Resources:</h3>
+            <ul>
+                <li><strong>Official Docs:</strong> <a href="https://docs.cypress.io" target="_blank">docs.cypress.io</a></li>
+                <li><strong>Practice API:</strong> <a href="https://jsonplaceholder.typicode.com" target="_blank">JSONPlaceholder</a></li>
+                <li><strong>Cypress GitHub:</strong> Examples and best practices</li>
+                <li><strong>Community:</strong> Cypress Discord, Stack Overflow</li>
+            </ul>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-top: 50px; text-align: center;">
+            <h2 style="color: white; border: none; margin: 0;">🎉 You're Ready!</h2>
+            <p style="margin-top: 15px; font-size: 1.1em;">You now have everything you need to build professional API automation projects with Cypress. Start small, practice consistently, and build your portfolio. Good luck on your automation testing journey!</p>
+        </div>
+    </div>
+</body>
+</html>
